@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -52,7 +53,7 @@ func jsonHandler() http.HandlerFunc {
 		w.Header().Set("Content-Type", content_type_json)
 		w.WriteHeader(http.StatusOK)
 		w.Write(b)
-		log.Println("[INF]", r.Method, r.URL.Path, "success")
+		log.Println("[INF]", r.Method, r.URL.Path, "success", fmt.Sprintf("body=%s", string(b)))
 		return
 	})
 }
