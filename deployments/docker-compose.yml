@@ -1,0 +1,9 @@
+services:
+  echo:
+    image: iolave/echo-service
+    build: 
+      context: ..
+      dockerfile: ./deployments/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
