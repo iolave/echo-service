@@ -26,17 +26,6 @@ func jsonHandler() http.HandlerFunc {
 			err.WriteResponse(w)
 			return
 		}
-		contentType := r.Header.Get("Content-Type")
-		if contentType != content_type_json {
-			err := errors.NewHTTPError(
-				http.StatusBadRequest,
-				"request body is not valid json",
-				nil,
-			)
-			log.Println("[ERR]", r.Method, r.URL.Path, "failed", err.Message, err.Original)
-			err.WriteResponse(w)
-			return
-		}
 
 		var body any
 		if err := json.Unmarshal(b, &body); err != nil {
